@@ -22,3 +22,12 @@ frontend/*.local
 *.njsproj
 *.sln
 *.sw?
+
+# Environment Variables
+.env
+
+# Ignore all files in temp folder
+temp/*
+
+# Except .gitkeep file
+!temp/.gitkeep
