@@ -4,6 +4,28 @@ const xlsx = require('xlsx');
 
 const tempFolder = path.join(__dirname, '../temp'); // Adjust the path to your temp folder
 
+
+function parseDate(value) {
+    if (typeof value === 'number') {
+        // Handle Excel date codes
+        const parsedDate = xlsx.SSF.parse_date_code(value);
+        if (parsedDate) {
+            const { y, m, d, H = 0, M = 0, S = 0 } = parsedDate;
+            return new Date(y, m - 1, d, H, M, S); // Convert to JavaScript Date
+        }
+        return null;
+    } else if (typeof value === 'string') {
+        const formats = [
+            'MM/DD/YYYY', 'DD/MM/YYYY', 'YYYY-MM-DD', 
+            'MM-DD-YYYY', 'DD-MM-YYYY', 'YYYY/MM/DD'
+        ];
+        const date = moment(value, formats, true).toDate();
+        return isNaN(date.getTime()) ? null : date;
+    }
+    const date = new Date(value);
+    return isNaN(date.getTime()) ? null : date;
+}
+
 module.exports = processExcelFiles = async () => {
     const files = await fs.readdir(tempFolder);
     const certificates = [];
@@ -21,12 +43,12 @@ module.exports = processExcelFiles = async () => {
 
             jsonData.forEach(row => {
                 const certificate = {
-                    certificateId: row['Certificate ID'] || row['certificateId'],
-                    firstName: row['First Name'] || row['firstName'],
-                    lastName: row['Last Name'] || row['lastName'],
-                    internshipDomain: row['Internship Domain'] || row['internshipDomain'],
-                    startDate: row['Start Date'] || row['startDate'],
-                    endDate: row['End Date'] || row['endDate'],
+                    certificateId: row['Certificate ID'],
+                    firstName: row['First Name'],
+                    lastName: row['Last Name'],
+                    internshipDomain: row['Internship Domain'],
+                    startDate: parseDate(row['Start Date']),
+                    endDate: parseDate(row['End Date']),
                 };
                 certificates.push(certificate);
             });

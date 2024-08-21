@@ -18,6 +18,20 @@ module.exports = {
 			next(error);
 		}
 	},
+	getAllCertificates: async (req, res, next) => {
+		try {
+			const certificates = await Certificate.find();
+			if (!certificates) {
+				const error = new Error("Certificate not found");
+				error.statusCode = 404;
+				throw error;
+			}
+
+			res.status(200).json({ sucess: true, certificates });
+		} catch (error) {
+			next(error);
+		}
+	},
 	singleCertificate: async (req, res, next) => {
 		const {
 			certificateId,
@@ -133,7 +147,7 @@ module.exports = {
 				throw error;
 			}
 
-			await certificate.remove();
+			await certificate.deleteOne();
 			res.status(200).json({
 				message: "Certificate deleted successfully",
 			});

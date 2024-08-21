@@ -4,6 +4,7 @@ const { authenticateAdmin } = require("../middlewares");
 const { certificateController } = require("../controllers");
 const {
 	getCertificate,
+	getAllCertificates,
 	singleCertificate,
 	multipleCertificates,
 	editCertificate,
@@ -12,6 +13,7 @@ const {
 } = certificateController;
 
 // Get Certificates
+router.get("/", getAllCertificates);
 router.get("/:certificateId", getCertificate);
 
 // Authentication Middleware
