@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import CertificateTemplate from './CertificateTemplate';
+import '../styles/GetCertificate.css';
 
 function GetCertificate() {
     const [certificateId, setCertificateId] = useState('');
@@ -17,7 +18,7 @@ function GetCertificate() {
     };
 
     return (
-        <div>
+        <div className="get-certificate-container">
             <h2>Get Your Certificate</h2>
             <input 
                 type="text" 

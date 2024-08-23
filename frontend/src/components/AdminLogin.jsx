@@ -2,7 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import { useNavigate } from 'react-router-dom';
-import '../styles/zidio.css';
+import '../styles/AdminLogin.css';
 
 function AdminLogin() {
     const [username, setUsername] = useState('');

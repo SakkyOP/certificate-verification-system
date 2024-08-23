@@ -1,0 +1,43 @@
+.get-certificate-container {
+    padding: 40px;
+    max-width: 600px;
+    margin: 80px auto;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+}
+
+.get-certificate-container h2 {
+    font-size: 32px;
+    color: #003d7a;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.get-certificate-container input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+    margin-bottom: 20px;
+    border: 2px solid #003d7a;
+    border-radius: 5px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.get-certificate-container button {
+    padding: 12px 24px;
+    font-size: 18px;
+    color: #fff;
+    background-color: #0056b3;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.get-certificate-container button:hover {
+    background-color: #003d7a;
+}
