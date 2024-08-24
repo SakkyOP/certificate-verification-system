@@ -3,11 +3,15 @@
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import '../styles/CertificateTemplate.css';
+import vfv from '../image/zidio1.png'
+
 
 function CertificateTemplate({ data }) {
-    const { firstName, lastName, internshipDomain, startDate, endDate } = data;
+    const { firstName, lastName, internshipDomain, startDate: startD, endDate: endD } = data;
     
-    const duration = `${startDate} to ${endDate}`;
+    const startDate = (new Date(startD)).toLocaleDateString();
+    const endDate = (new Date(endD)).toLocaleDateString();
+
     const fullName = `${firstName} ${lastName}`;
     
     const downloadPDF = () => {
@@ -16,7 +20,7 @@ function CertificateTemplate({ data }) {
         html2canvas(input, { useCORS: true }).then((canvas) => {
             const imgData = canvas.toDataURL('image/png');
             const pdf = new jsPDF('landscape');
-            pdf.addImage(imgData, 'PNG', 10, 10);
+            pdf.addImage(imgData, 'PNG', 10, 22);
             pdf.save('certificate.pdf');
         });
     };
@@ -24,16 +28,14 @@ function CertificateTemplate({ data }) {
     return (
         <div>
             <div id="certificate">
+                <img src={vfv}/>
                 <h1>Certificate of Completion</h1>
                 <p>
-                    This is to certify that <strong>{fullName}</strong> has successfully completed the internship in <strong>{internshipDomain}</strong> for the duration <strong>{duration}</strong>.
+                    This is to certify that <strong>{fullName}</strong> has successfully completed the internship in <strong>{internshipDomain}</strong> for the duration <strong>{startDate}</strong> to <strong>{endDate}</strong>.
                 </p>
                 <p>
                     We acknowledge their dedication, hard work, and valuable contributions during the internship period.
                 </p>
-                <div className="signature-container">
-                    <p className="signature">Signature of the Authority</p>
-                </div>
             </div>
             <button onClick={downloadPDF} className="download-button">Download as PDF</button>
         </div>

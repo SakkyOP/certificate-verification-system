@@ -1,18 +1,29 @@
 #certificate {
     border: 5px solid #4a4a4a;
-    padding: 50px; 
-    width: 850px; 
+    max-width: 270mm;
+    height: 170mm; 
     margin: 40px auto;
-    background-color: rgba(255, 255, 255, 0.8); 
-    background-image: url('../image/zidio3.png');
+    background-color: #fff; 
     filter: brightness(100%) contrast(100%);
     background-size: 60%; 
     background-position: center;
     background-repeat: no-repeat;
     text-align: center;
     border-radius: 15px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     font-family: 'Georgia', serif;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#certificate img {
+    position: absolute;
+    width: 25%;
+    top: 40px;
+    z-index: -1;
+    /* opacity: 0.4; */
 }
 
 #certificate h1 {
@@ -25,6 +36,7 @@
 }
 
 #certificate p {
+    width: 80%;
     font-size: 20px;
     line-height: 1.6;
     margin: 20px 0;
