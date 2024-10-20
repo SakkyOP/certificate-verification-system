@@ -4,7 +4,7 @@ import GetCertificate from './components/GetCertificate';
 import AdminDashboard from './components/AdminDashboard';
 import ProtectedRoute from './components/ProtectedRotue';
 import axios from 'axios';
-axios.defaults.baseURL = 'http://localhost:298'
+axios.defaults.baseURL = `http://localhost:${process.env.PORT}`
 
 function App() {
     return (
