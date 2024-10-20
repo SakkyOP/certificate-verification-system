@@ -8,7 +8,7 @@ const ErrorMiddleware = (err, req, res, next) => {
         success: false,
         status: statusCode,
         message: errorMessage,
-        ...(process.env.NODE_ENV.toLowerCase() === 'development' && { stack: err.stack }), // Include stack trace in development
+        ...(process.env.NODE_ENV === 'development' && { stack: err.stack }), // Include stack trace in development
     });
 };
 
